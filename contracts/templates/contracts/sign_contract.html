@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %} Sign Contract {% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/forms.css" %}">
+{% endblock style %}
+
+{% block content %}
+    
+    <h1>{{ contract.title }}</h1>
+    <p>{{ contract.content }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="content">Description:</label>
+        <textarea name="description" placeholder="Lorem Ipsum ..." required>{{ contract.description }}</textarea>
+        <label for="full_name">Full Name:</label>
+        <input type="text" name="full_name" required>
+        <label for="date">Date:</label>
+        <input type="date" name="date" required>
+        <button type="submit">Sign</button>
+    </form>
+
+{% endblock content %}
+
+
+
+

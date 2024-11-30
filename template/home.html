@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block title %} Home {% endblock title %}
+
+{% block style %}
+     <link rel="stylesheet" href="{% static "css/forms.css" %}">
+{% endblock style %}
+
+{% block content %}
+    <h1>Homepage</h1>
+    {%if user.is_authenticated%}
+        <form action="{%url 'account_logout'%}" method="post">
+        {%csrf_token%}
+            <p>Welcome to Homepage</p>
+        </form>
+    {% else %}
+        <p>Please <a href="{% url 'account_login' %}" class="no_underline">Log in</a> in order to create a contract and
+        if you don't have an account you can <a href="{% url 'account_signup' %}" class="no_underline">Sign in</a></p>
+    {% endif %}
+
+{% endblock content %}
+
